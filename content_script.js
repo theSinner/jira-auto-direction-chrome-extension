@@ -28,7 +28,7 @@ function loadFontResourceIfNeeded(name) {
     }
 }
 
-function updateDirection(event) {
+function updateJiraDirection(event) {
     setTimeoutVal = null;
     document.querySelectorAll(
         '.user-content-block, .actionContainer .action-body, #tinymce'
@@ -47,10 +47,25 @@ function updateDirection(event) {
 
 }
 
+function updateConfluenceDirection(event) {
+    setTimeoutVal = null;
+    document.querySelectorAll(
+        '#content #main-content, #title-text'
+    ).forEach(
+        (function (x) {
+            x.setAttribute("dir", "auto");
+            if (font != null && font != 'null') {
+                loadFontResourceIfNeeded(font);
+                x.classList.add(font);
+            }
+        })
+    );
+}
+
 if (location.host.startsWith('jira.')) {
     chrome.storage.sync.get('font', function (data) {
         font = data['font'];
-        updateDirection(null);
+        updateJiraDirection(null);
     });
 
     document.addEventListener('DOMNodeInserted', (event) => {
@@ -58,7 +73,22 @@ if (location.host.startsWith('jira.')) {
             clearTimeout(setTimeoutVal);
         }
         setTimeoutVal = setTimeout(
-            () => updateDirection(event),
+            () => updateJiraDirection(event),
+            1000
+        );
+    });
+} else if (location.host.startsWith('confluence.')) {
+    chrome.storage.sync.get('font', function (data) {
+        font = data['font'];
+        updateConfluenceDirection(null);
+    });
+
+    document.addEventListener('DOMNodeInserted', (event) => {
+        if (setTimeoutVal != null) {
+            clearTimeout(setTimeoutVal);
+        }
+        setTimeoutVal = setTimeout(
+            () => updateConfluenceDirection(event),
             1000
         );
     });
