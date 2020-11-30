@@ -33,3 +33,10 @@
 .rubik {
     font-family: 'Rubik', 'San Francisco Text', 'ubuntu', sans-serif;
 }
+
+.codeContent,
+code,
+.code {
+    direction: ltr !important;
+    text-align: left;
+}
