@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .contentBox
+      {
+        width: 30rem;
+        padding: 1rem 1.5rem;
+        padding-top: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        font-family: Helvetica, Arial, sans-serif;
+        max-width: calc(100vw - 3rem);
+        margin: 0 auto;
+      }
+      button
+      {
+        display: block;
+        padding: 0.8rem 1.2rem;
+        outline: none;
+        border: 0px;
+        background-color: #22819F;
+        color: #FFFFFF;
+        border-radius: 6px;
+        cursor: pointer;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+      button:hover
+      {
+        background-color: #0b4455;
+      }
+      input
+      {
+        cursor: pointer;
+      }
+      select
+      {
+        padding: 0.5rem 1rem;
+        border: 1px solid #22819F;
+        border-radius: 6px;
+        outline: none;
+        margin-top: 0.5rem;
+        margin-inline-start: 1rem;
+        cursor: pointer;
+      }
+      .radioBox
+      {
+        display: block;
+      }
+      .radioBox label
+      {
+        color: #757575;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .optionTitle
+      {
+        font-size: 1rem;
+      }
+      .optionBox
+      {
+        padding: 0.5rem 1rem;
+      }
+      .fullWidth
+      {
+        width: 100%;
+      }
+      .buttonBox
+      {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+      .hint
+      {
+        color: #9E9E9E;
+        font-size: 0.9rem;
+        padding-inline-start: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contentBox">
+        <h1 class="title">Jira Auto Direction</h1>
+        <p class="content">Fix RTL lanugages texts aligns.</p>
+        
+        <h2 class="optionTitle">Font</h2>
+        <form name='fontForm'>
+          <div class="optionBox">
+              <div class="radioBox">
+                  <input type="radio" id="default" name="fontType" value="default">
+                  <label for="default">Default font</label><br>
+              </div>
+          </div>
+          <div class="optionBox">
+              <div class="radioBox">
+                  <input type="radio" id="free" name="fontType" value="free">
+                  <label for="free">Free fonts</label>
+              </div>
+              <select name="free_fonts" id="free_fonts">
+                  <option value="null">Select one</option>
+                  <optgroup label="Farsi">
+                      <option value="vazir">Vazir</option>
+                      <option value="shabnam">Shabnam</option>
+                  </optgroup>
+                  <optgroup label="Arabic">
+                      <option value="harmattan">Harmattan</option>
+                      <option value="tajawal">Tajawal</option>
+                  </optgroup>
+                  <optgroup label="Hebrew">
+                      <option value="rubik">Rubik</option>
+                  </optgroup>
+              </select>
+          </div>
+          <div class="optionBox">
+              <div class="radioBox">
+                  <input type="radio" id="paid" name="fontType" value="paid">
+                  <label for="paid">Paid fonts</label>
+              </div>
+              
+              <select name="paid_fonts" id="paid_fonts">
+                  <option value="null">Select one</option>
+                  <optgroup label="Farsi">
+                      <option value="dana">Dana</option>
+                      <option value="iransans">IRANSans</option>
+                      <option value="iranyekan">IRANYekan</option>
+                  </optgroup>
+              </select>
+              <p class="hint">These are paid fonts. You should have them installed in your computer to change the font.</p>
+          </div>
+        </form>
+        <div class="buttonBox">
+            <button id="submit">Update and reload the page</button>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
