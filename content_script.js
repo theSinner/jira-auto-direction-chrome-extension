@@ -2,7 +2,7 @@ setTimeoutVal = null;
 
 let font;
 
-function loadFontResourceIfNeeded(name) {
+function loadFontResourceIfNeeded(doc, name) {
     let resourceUrl;
     if (name === 'vazir') {
         resourceUrl = 'https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v27.0.3/dist/font-face.css';
@@ -16,9 +16,9 @@ function loadFontResourceIfNeeded(name) {
         resourceUrl = 'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700';
     }
     const id = name + '_font_style';
-    if (resourceUrl != null && !document.getElementById(id)) {
-        var head = document.getElementsByTagName('head')[0];
-        var link = document.createElement('link');
+    if (resourceUrl != null && !doc.getElementById(id)) {
+        var head = doc.getElementsByTagName('head')[0];
+        var link = doc.createElement('link');
         link.id = id;
         link.rel = 'stylesheet';
         link.type = 'text/css';
@@ -31,12 +31,13 @@ function loadFontResourceIfNeeded(name) {
 function updateJiraDirection(event) {
     setTimeoutVal = null;
     document.querySelectorAll(
-        '.user-content-block, .actionContainer .action-body, .content #summary, .wiki-edit textarea, .activity-item .user-content, #addcomment textarea, #activity-stream blockquote p, #tinymce, #tinymce p'
+        '.user-content-block, .actionContainer .action-body, .content #summary, .wiki-edit textarea, .activity-item .user-content, #addcomment textarea, #activity-stream blockquote p'
     ).forEach(
         (function (x) {
             x.setAttribute("dir", "auto");
             if (font != null && font != 'null') {
-                loadFontResourceIfNeeded(font);
+
+                loadFontResourceIfNeeded(document, font);
                 x.classList.add('rtlContent', font);
             } else {
                 x.classList.add('rtlContent');
@@ -44,6 +45,32 @@ function updateJiraDirection(event) {
 
         })
     );
+    var iframe = document.querySelector('.rte-container iframe');
+    if (iframe != null) {
+        var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+        var jiraAutoDirectionStyle = innerDoc.getElementById('jiraAutoDirectionStyle');
+        if (jiraAutoDirectionStyle == null) {
+            var style = document.createElement('style');
+            style.id = 'jiraAutoDirectionStyle';
+            style.textContent =
+                '.rtlContent {' +
+                'line-height: 2rem;' +
+                '}';
+            if (font != null && font != 'null') {
+                style.textContent +=
+                    'body p {' +
+                    'font-family: ' + font + ", 'San Francisco Text', 'ubuntu', sans-serif !important;" +
+                    '}'
+            }
+            iframe.contentDocument.head.appendChild(style);
+            loadFontResourceIfNeeded(innerDoc, font);
+            innerDoc.body.setAttribute("dir", "auto");
+        }
+
+
+
+
+    }
 
 }
 
