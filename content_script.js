@@ -31,7 +31,7 @@ function loadFontResourceIfNeeded(doc, name) {
 function updateJiraDirection(event) {
     setTimeoutVal = null;
     document.querySelectorAll(
-        '.user-content-block, .actionContainer .action-body, .content #summary, .wiki-edit textarea, .activity-item .user-content, #addcomment textarea, #activity-stream blockquote p'
+        '.user-content-block, .actionContainer .action-body, .content #summary, .wiki-edit textarea, .activity-item .user-content, .activity-item textarea, #addcomment textarea, #activity-stream blockquote p'
     ).forEach(
         (function (x) {
             x.setAttribute("dir", "auto");
