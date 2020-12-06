@@ -1,6 +1,6 @@
 {
     "name": "Jira Auto Direction",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Using this extension will fix text align automaticaly",
     "permissions": [
         "activeTab",

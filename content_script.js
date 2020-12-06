@@ -45,14 +45,14 @@ function updateJiraDirection(event) {
         '.user-content-block, .actionContainer .action-body, .content #summary, #addcomment textarea, .wiki-edit textarea'
     ).forEach(
         (function (x) {
-            setAttributesToElement(elem, 'rtlContent')
+            setAttributesToElement(x, 'rtlContent')
         })
     );
     document.querySelectorAll(
         '.activity-item .user-content, .activity-item textarea, #activity-stream blockquote p'
     ).forEach(
         (function (x) {
-            setAttributesToElement(elem, '')
+            setAttributesToElement(x, 'notRtlContent')
         })
     );
     var iframe = document.querySelector('.rte-container iframe');
