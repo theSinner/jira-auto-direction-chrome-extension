@@ -28,21 +28,31 @@ function loadFontResourceIfNeeded(doc, name) {
     }
 }
 
+function setAttributesToElement(elem, extraClass) {
+    elem.setAttribute("dir", "auto");
+    if (font != null && font != 'null') {
+
+        loadFontResourceIfNeeded(document, font);
+        elem.classList.add(extraClass, font);
+    } else {
+        elem.classList.add(extraClass);
+    }
+}
+
 function updateJiraDirection(event) {
     setTimeoutVal = null;
     document.querySelectorAll(
-        '.user-content-block, .actionContainer .action-body, .content #summary, .wiki-edit textarea, .activity-item .user-content, .activity-item textarea, #addcomment textarea, #activity-stream blockquote p'
+        '.user-content-block, .actionContainer .action-body, .content #summary, #addcomment textarea, .wiki-edit textarea'
     ).forEach(
         (function (x) {
-            x.setAttribute("dir", "auto");
-            if (font != null && font != 'null') {
-
-                loadFontResourceIfNeeded(document, font);
-                x.classList.add('rtlContent', font);
-            } else {
-                x.classList.add('rtlContent');
-            }
-
+            setAttributesToElement(elem, 'rtlContent')
+        })
+    );
+    document.querySelectorAll(
+        '.activity-item .user-content, .activity-item textarea, #activity-stream blockquote p'
+    ).forEach(
+        (function (x) {
+            setAttributesToElement(elem, '')
         })
     );
     var iframe = document.querySelector('.rte-container iframe');
