@@ -49,7 +49,7 @@ function updateJiraDirection(event) {
         })
     );
     document.querySelectorAll(
-        '.activity-item .user-content, .activity-item textarea, #activity-stream blockquote p'
+        '.activity-item .user-content, .activity-item textarea, #activity-stream blockquote p, .activity-item p'
     ).forEach(
         (function (x) {
             setAttributesToElement(x, 'notRtlContent')
@@ -87,7 +87,7 @@ function updateJiraDirection(event) {
 function updateConfluenceDirection(event) {
     setTimeoutVal = null;
     document.querySelectorAll(
-        '#content #main-content, #title-text'
+        '#content #main-content, #title-text, #content #main-content p, #content #main-content h1, #content #main-content h2, #content #main-content h3, #content #main-content h4, #content #main-content h5, #content #main-content h6'
     ).forEach(
         (function (x) {
             x.setAttribute("dir", "auto");
